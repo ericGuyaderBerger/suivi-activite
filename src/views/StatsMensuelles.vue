@@ -36,8 +36,9 @@ export default {
     },
     methods:{
         getData(ev){
-            // this.$http.get('http://localhost:3000/ts/2018-05?clientFinal=Laboratoires+Lebeau')
-            this.$http.get('http://localhost:3000/ts/2018-05?clientFinal=Promologis')
+            // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Laboratoires+Lebeau')
+            this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Promologis')
+            // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Fauché')
             .then(response => {
                     this.resultats = response.data;
             });
