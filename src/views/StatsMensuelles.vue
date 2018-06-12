@@ -43,12 +43,17 @@ export default {
     },
     methods:{
         getData(ev){
+            let baseUrl = 'http://localhost:3000/ts/';
+            let url = baseUrl;
+            if(this.recherche.mois !== ''){
+                url += this.recherche.mois + '?'
+            }
             // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Laboratoires+Lebeau')
-            this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Promologis')
+            // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Promologis')
             // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Fauché')
+            this.$http.get(url)
             .then(response => {
                     this.resultats = response.data;
-
             });
         }
     },
@@ -62,8 +67,10 @@ export default {
     filters:{
         getDay: (val) => new Date(val).getDate(),
         timeFormat: (val) => {
+            // return val
             // return new Date(val*3600).toLocaleTimeString()
-            return Math.floor(val) + "h" + ('0' + (parseFloat(val)-Math.floor(val)) * 60).substr(-2)
+            
+            return Math.floor(val) + "h" + ('0' + parseInt((parseFloat(val)-Math.floor(val)) * 60)).substr(-2)
         }
     }    
 }
