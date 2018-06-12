@@ -1,12 +1,12 @@
 <template>
     <div>
-        <ul>
-            <li><label>Mois: <input type="text" id="" v-model="recherche.mois"></label></li>
-            <li><label>Client final: <input type="text" id="" v-model="recherche.clientFinal"></label></li>
-            <li><button @click="getData">OK</button></li>
-        </ul>
-
-        <table v-if="resultats">
+        <b-form inline>
+            <label for="rech-mois" class="sr-only">Mois:</label><b-input type="text" id="rech-mois" placeholder="Mois" v-model="recherche.mois" class="col-3"></b-input>
+            <label for="rech-client" class="sr-only">Client:</label> <b-input type="text" placeholder="Client" id="rech-client" v-model="recherche.client" class="col-4"></b-input>
+            <label for="rech-client-final" class="sr-only">Client final:</label> <b-input type="text" placeholder="Client final" id="rech-client-final" v-model="recherche.clientFinal" class="col-4"></b-input>
+            <b-button @click="getData" variant="primary" class="col-1">OK</b-button>
+        </b-form>
+        <table v-if="resultats" class="table table-condensed" >
             <thead>
                 <tr>
                     <th>Jour</th>
@@ -16,11 +16,18 @@
             </thead>
             <tbody>
                 <tr v-for="(tache,index) in resultats" :key="index">
-                    <td>{{ tache.date }}</td>
+                    <td>{{ tache.date | getDay }}</td>
                     <td>{{ tache.description }}</td>
-                    <td>{{ tache.duree }}</td>
+                    <td>{{ tache.duree | timeFormat }}</td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td>Total</td>
+                    <td>{{ totalDuree | timeFormat }}</td>                    
+                </tr>
+            </tfoot>
         </table>
     </div>
 </template>
@@ -31,7 +38,7 @@ export default {
     data(){
         return {
             recherche:{},
-            resultats:[]
+            resultats:[],
         }
     },
     methods:{
@@ -41,12 +48,32 @@ export default {
             // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Fauché')
             .then(response => {
                     this.resultats = response.data;
+
             });
+        }
+    },
+    computed:{
+        totalDuree(){
+            let total = 0
+            this.resultats.forEach(item => total+=item.duree)
+            return total
+        }
+    },
+    filters:{
+        getDay: (val) => new Date(val).getDate(),
+        timeFormat: (val) => {
+            // return new Date(val*3600).toLocaleTimeString()
+            return Math.floor(val) + "h" + ('0' + (parseFloat(val)-Math.floor(val)) * 60).substr(-2)
         }
     }    
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+    tfoot{
+        font-weight: bold; 
+        .header{
+            text-align: right;
+        }
+    }
 </style>

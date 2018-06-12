@@ -10,6 +10,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.11",
     "vue": "^2.5.16",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
@@ -23,9 +24,10 @@
     "@vue/cli-service": "^3.0.0-beta.15",
     "@vue/eslint-config-standard": "^3.0.0-beta.15",
     "@vue/test-utils": "^1.0.0-beta.16",
+    "bootstrap-sass": "^3.3.7",
     "chai": "^4.1.2",
     "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "^7.0.3",
     "vue-template-compiler": "^2.5.16"
   },
   "browserslist": [
