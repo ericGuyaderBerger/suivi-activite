@@ -45,8 +45,14 @@ export default {
         getData(ev){
             let baseUrl = 'http://localhost:3000/ts/';
             let url = baseUrl;
-            if(this.recherche.mois !== ''){
+            if(undefined !== this.recherche.mois && this.recherche.mois !== ''){
                 url += this.recherche.mois + '?'
+            }
+            if(undefined !== this.recherche.client && this.recherche.client !== ''){
+                url += 'client=' + this.recherche.client + '&'
+            }
+            if(undefined !== this.recherche.clientFinal && this.recherche.clientFinal !== ''){
+                url += 'clientFinal=' + this.recherche.clientFinal + '&'
             }
             // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Laboratoires+Lebeau')
             // this.$http.get('http://localhost:3000/ts/2018-06?clientFinal=Promologis')
