@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
-import StatsMensuelles from './views/StatsMensuelles.vue'
+import TempsMensuels from './views/TempsMensuels.vue'
 
 Vue.use(Router)
 
@@ -15,8 +15,8 @@ export default new Router({
     },
     {
       path: '/mois',
-      name: 'stats-mensuelles',
-      component: StatsMensuelles
+      name: 'temps-mensuels',
+      component: TempsMensuels
     },
     {
       path: '/about',

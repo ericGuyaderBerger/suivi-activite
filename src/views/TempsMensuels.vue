@@ -24,7 +24,7 @@
 import TempsPasses from '@/views/TempsPasses.vue'
 
 export default {
-    name:'StatsMensuelles',
+    name:'TempsMensuels',
     data(){
         return {
             recherche:{},
